@@ -1,0 +1,13 @@
+.container {
+  background-color: aquamarine;
+  width: auto;
+  min-width: 375px;
+  position: fixed;
+  top: 0;
+  left: 0;
+}
+
+.form {
+  padding: 8px;
+  display: flex;
+}

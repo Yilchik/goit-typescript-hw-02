@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./App.css";
 import SearchBar from "./components/SearchBar/SearchBar";
 import ImageGallery from "./components/ImageGallery/ImageGallery";
@@ -8,13 +8,26 @@ import { getArticlesApi } from "./api/articles-api";
 import LoadMoreBtn from "./components/LoadMoreBtn/LoadMoreBtn";
 import ImageModal from "./components/ImageModal/ImageModal";
 
+interface Image {
+  id: string;
+  urls: {
+    small: string;
+    regular: string;
+  };
+  alt_description: string;
+  user: {
+    name: string;
+  };
+  likes: number;
+}
+
 function App() {
-  const [images, setImages] = useState([]);
+  const [images, setImages] = useState<Image[]>([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(false);
   const [query, setQuery] = useState("");
   const [page, setPage] = useState(1);
-  const [selectedImage, setSelectedImage] = useState(false);
+  const [selectedImage, setSelectedImage] = useState<Image | null>(null);
 
   useEffect(() => {
     const searchImages = async () => {
@@ -33,7 +46,7 @@ function App() {
     query && searchImages();
   }, [page, query]);
 
-  const handleSubmit = async (searchQuery) => {
+  const handleSubmit = async (searchQuery: string) => {
     setQuery(searchQuery);
     setImages([]);
     setPage(1);
@@ -43,7 +56,7 @@ function App() {
     setPage(page + 1);
   };
 
-  const handleImageClick = (image) => {
+  const handleImageClick = (image: Image) => {
     setSelectedImage(image);
   };
 

@@ -1,6 +1,22 @@
 import css from "./ImageCard.module.css";
 
-function ImageCard({ image, onImageClick }) {
+interface Image {
+  urls: {
+    small: string;
+  };
+  alt_description: string;
+  user: {
+    name: string;
+  };
+  likes: number;
+}
+
+interface ImageCardProps {
+  image: Image;
+  onImageClick: (image: Image) => void;
+}
+
+const ImageCard: React.FC<ImageCardProps> = ({ image, onImageClick }) => {
   return (
     <div className={css.card}>
       <img
@@ -15,6 +31,6 @@ function ImageCard({ image, onImageClick }) {
       </div>
     </div>
   );
-}
+};
 
 export default ImageCard;

@@ -1,8 +1,10 @@
 import css from "./ImageCard.module.css";
 
 interface Image {
+  id: string;
   urls: {
     small: string;
+    regular: string;
   };
   alt_description: string;
   user: {
